@@ -15,7 +15,11 @@ module.exports = {
             {test: /\.vue$/, loader: 'vue-loader'},
             {test: /\.css$/, loader: ['style-loader', 'css-loader']},
             {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-            {test:/\.(ttf|jpg|png|gif|svg)$/, loader: 'url-loader'}
+            {test:/\.(ttf|jpg|jpeg|png|gif|svg)$/,
+                use:[
+                    {loader:'url-loader', options: {esModule:false}}
+                    ]
+            }
         ]
     },
     devServer: {
