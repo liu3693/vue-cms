@@ -27,7 +27,7 @@ module.exports = {
         contentBase: path.resolve(__dirname),
         open: true,
         hot: true,
-        host: '192.168.50.170'
+
     },
     plugins: [
         new htmlWebpackPlugin({
