@@ -19,13 +19,15 @@ module.exports = {
                 use:[
                     {loader:'url-loader', options: {esModule:false}}
                     ]
-            }
+            },
+            {test:/\.scss$/, loader: ["style-loader","css-loader","sass-loader"]}
         ]
     },
     devServer: {
         contentBase: path.resolve(__dirname),
         open: true,
-        hot: true
+        hot: true,
+        host: '192.168.50.170'
     },
     plugins: [
         new htmlWebpackPlugin({
