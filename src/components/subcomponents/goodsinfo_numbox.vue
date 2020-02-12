@@ -1,6 +1,6 @@
 <template>
   <div class="numbox-container">
-    <van-stepper v-model="value" @change="countChange" input-width="40px" button-size="32px"/>
+    <van-stepper v-model="value" @change="countChange" :max="max" :input-width="width||60" :button-size="size||32"/>
   </div>
 </template>
 
@@ -16,7 +16,8 @@
       countChange(){
         this.$emit('getcount',parseInt(this.value))
       }
-    }
+    },
+    props:['max','width','size']
   }
 </script>
 

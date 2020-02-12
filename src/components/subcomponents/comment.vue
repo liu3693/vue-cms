@@ -4,7 +4,7 @@
     <hr>
     <textarea name="" placeholder="请输入内容，最多120字符" id="" cols="30" rows="10" v-model="msg">
     </textarea>
-    <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
+    <van-button type="primary" size="large" @click="postComment">发表评论</van-button>
     <div class="cmt-list">
       <div class="cmt-item" v-for="(item,i) in comments" :key="item.add_time">
         <div class="cmt-title">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
+    <van-button type="danger" size="large" plain @click="getMore">加载更多</van-button>
 
   </div>
 </template>

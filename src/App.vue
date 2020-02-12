@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 顶部 header 区域 -->
-    <mt-header fixed title="vue项目"></mt-header>
+    <van-nav-bar
+            title="vue项目"
+            :left-arrow="flag"
+            @click-left="goback"
+    />
     <!-- 中间的路由 router-view 区域 -->
     <transition>
       <router-view></router-view>
@@ -17,7 +21,7 @@
         <span class="mui-tab-label">会员</span>
       </router-link>
       <router-link class="mui-tab-item" to="/cart">
-        <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+        <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span></span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
       <router-link class="mui-tab-item" to="/search">
@@ -29,12 +33,37 @@
 </template>
 
 <script>
-
+export default {
+  data(){
+    return {
+      flag:true
+    }
+  },
+  methods:{
+    goback(){
+      this.$router.go(-1)
+    }
+  },
+  created() {
+    if (this.$route.path === '/home'){
+      this.flag = false
+    }
+  },
+  watch:{
+    '$route.path':function (newVal) {
+        if (newVal ==='/home'){
+          this.flag = false
+        }else {
+          this.flag = true
+        }
+    }
+  }
+}
 </script>
 
 <style scoped>
   .app-container {
-    padding-top: 40px;
+    /*padding-top: 40px;*/
     padding-bottom: 52px;
     overflow-x: hidden;
   }

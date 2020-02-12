@@ -19,7 +19,7 @@
     </div>
 
 <!--    加载更多-->
-    <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>
+    <van-button type="danger" size="large" @click="getMore">加载更多</van-button>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="goodsinfo-container">
     <transition
-            @before-enter="beforEnter"
+            @before-enter="beforeEnter"
             @enter="enter"
             @after-enter="afterEnter">
       <div class="ball" v-show="ballFlag" ref="ball"></div>
@@ -20,11 +20,11 @@
           </p>
           <p>
             购买数量：
-            <numbox @getcount="getSelectedCount"></numbox>
+            <numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox>
           </p>
           <p>
-            <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small" @click="addToCart">加入购物车</mt-button>
+            <van-button type="primary" size="small">立即购买</van-button>
+            <van-button type="danger" size="small" @click="addToCart">加入购物车</van-button>
           </p>
         </div>
       </van-panel>
@@ -37,8 +37,8 @@
           <p>库存情况：{{goodsinfo.stock_quantity}}</p>
           <p>上架事件：{{goodsinfo.add_time}}</p>
 
-          <mt-button type="primary" size="large" @click="goDesc(id)">图文介绍</mt-button>
-          <mt-button type="danger" size="large" @click="goComment(id)">商品评论</mt-button>
+          <van-button type="primary" size="large" @click="goDesc(id)">图文介绍</van-button>
+          <van-button type="danger" size="large" @click="goComment(id)">商品评论</van-button>
         </div>
       </van-panel>
     </div>
@@ -89,9 +89,11 @@
         this.$router.push({name: 'goodscomment', params: {id}})
       },
       addToCart() {
-        this.ballFlag = !this.ballFlag
+        this.ballFlag = !this.ballFlag;
+        let goods_info= {id:this.id,count:this.selectedCount,price:this.goodsinfo.sell_price,selected:true}
+        this.$store.commit('addToCart', goods_info)
       },
-      beforEnter(el) {
+      beforeEnter(el) {
         el.style.transform = "translate(0,0)";
       },
       enter(el, done) {
